@@ -6,10 +6,7 @@ import {
 import React, { useState } from "react";
 import { auth } from "../config/firebaseConfig";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 
 import googleLogo from '../assets/googleLogo.svg'
 import "../css/LoginPage.css"
