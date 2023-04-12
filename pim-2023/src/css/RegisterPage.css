@@ -23,6 +23,7 @@
 
 .registerContainer .textField {
     width: 100%;
+    /* margin: 8px 0 8px 0; */
 }
 
 .registerContainer .cgu {
@@ -65,11 +66,13 @@
     color: white;
     font-size: 100%;
     cursor: pointer;
+    margin: 8px 0 8px 0;
 }
 
 .registerForm {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .registerWithGoogle {
@@ -81,10 +84,11 @@
     height: 52px;
     background: #FFFFFF;
     background-color: white;
-    margin: 16px 0 16px 0;
+    margin: 8px 0 8px 0;
     padding: 16px 32px;
     gap: 8px;
     border: 1px solid #CCCCCC;
     border-radius: 10px;
     cursor: pointer;
 }
+

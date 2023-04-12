@@ -31,12 +31,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="globalRegisterContainer">
-      <div className="registerContainer">
+    <div className="globalLoginContainer">
+      <div className="loginContainer">
         <p>Se connecter</p>
-        <form onSubmit={handleLogin} className="registerForm">
+        <form onSubmit={handleLogin} className="loginForm">
           <TextField className="textField"
-            margin="normal"
             id="standard-basic"
             label="Adresse e-mail"
             name="email"
@@ -45,7 +44,6 @@ export default function LoginPage() {
             required
           />
           <TextField className="textField"
-            margin="normal"
             id="standard-basic"
             label="Mot de passe"
             name="password"
@@ -58,7 +56,7 @@ export default function LoginPage() {
           <img src={googleLogo} alt="Google logo" />Continuer avec Google
         </button>
         <p className="returnToLogin">
-          Pas encre inscrit ?
+          Pas encore inscrit ?
           <Link id="linkRouter" to="/security/register"> S'inscrire</Link>
         </p>
       </div>

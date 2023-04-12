@@ -56,7 +56,7 @@ export default function HomePage() {
                 {task.date.toDate().toLocaleString()} {task.name} (
                 {task.completed.toString()})
               </Link>
-              {task.image && <img src={task.image} />}
+              {task.image && <img src={task.image} alt="userimage" />}
             </li>
           ))}
         </ul>
