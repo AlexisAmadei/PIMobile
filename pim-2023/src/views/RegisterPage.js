@@ -1,10 +1,12 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../config/firebaseConfig";
-import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 import "../css/RegisterPage.css";
+import googleLogo from '../assets/googleLogo.svg'
 
 export default function RegisterPage() {
   const [error, setError] = useState(null);
@@ -14,6 +16,12 @@ export default function RegisterPage() {
     const email = formData.get("email");
     const password = formData.get("password");
     createUserWithEmailAndPassword(auth, email, password).catch((error) => {
+      setError(error.message);
+    });
+  };
+  const handleGoogleLogin = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).catch((error) => {
       setError(error.message);
     });
   };
@@ -36,7 +44,6 @@ export default function RegisterPage() {
             label="Nom"
             name="lastName"
             required
-            autoFocus
           />
           <TextField className="textField"
             margin="normal"
@@ -45,7 +52,6 @@ export default function RegisterPage() {
             name="email"
             autoComplete="email"
             required
-            autoFocus
           />
           <TextField className="textField"
             margin="normal"
@@ -53,12 +59,21 @@ export default function RegisterPage() {
             label="Mot de passe"
             name="password"
             required
-            autoFocus
           />
+          <p className="cgu">
+            En sélectionnant <span>Accepter et continuer</span>, j’accepte les Conditions de service, les Conditions de service relatives aux paiements, la Politique de 
+            non-discrimination et la Politique de confidentialité de Donkon
+          </p>
           <input className="acceptButton" type="submit" value="Accepter et continuer" />
+          {error && <div style={{ color: "red" }}>{error}</div>}
         </form>
-        <Link to="/security/login">Login</Link>
-        {error && <div style={{ color: "red" }}>{error}</div>}
+        <button className="registerWithGoogle" onClick={handleGoogleLogin}>
+          <img src={googleLogo} alt="Google logo" />Continuer avec Google
+        </button>
+        <p className="returnToLogin">
+          Déjà un compte ?
+          <Link id="linkRouter" to="/security/login"> Se Connecter</Link>
+        </p>
       </div>
     </div>
   );

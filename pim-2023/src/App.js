@@ -19,8 +19,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/security" element={<SecurityLayout user={user} />}>
-          <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
         </Route>
         <Route path="/" element={<PrivateLayout user={user} />}>
           <Route path="logout" element={<Logout />} />

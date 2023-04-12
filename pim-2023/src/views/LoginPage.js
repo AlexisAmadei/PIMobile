@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import googleLogo from '../assets/googleLogo.svg'
 import "../css/LoginPage.css"
 
+
 export default function LoginPage() {
   const [error, setError] = useState(null);
   const handleLogin = (event) => {
@@ -33,59 +34,37 @@ export default function LoginPage() {
   };
 
   return (
-    <Box
-      sx={{
-        boxShadow: 3,
-        borderRadius: 2,
-        px: 4,
-        py: 6,
-        marginTop: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <div className="" style={{
-        width: '100%',
-        height: '100%'
-      }}>
+    <div className="globalRegisterContainer">
+      <div className="registerContainer">
+        <p>Se connecter</p>
+        <form onSubmit={handleLogin} className="registerForm">
+          <TextField className="textField"
+            margin="normal"
+            id="standard-basic"
+            label="Adresse e-mail"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            required
+          />
+          <TextField className="textField"
+            margin="normal"
+            id="standard-basic"
+            label="Mot de passe"
+            name="password"
+            required
+          />
+          <input className="acceptButton" type="submit" value="Continuer" />
+          {error && <div style={{ color: "red" }}>{error}</div>}
+        </form>
+        <button className="registerWithGoogle" onClick={handleGoogleLogin}>
+          <img src={googleLogo} alt="Google logo" />Continuer avec Google
+        </button>
+        <p className="returnToLogin">
+          Pas encre inscrit ?
+          <Link id="linkRouter" to="/security/register"> S'inscrire</Link>
+        </p>
       </div>
-      <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-      <form className="loginForm" onSubmit={handleLogin}>
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        id="email"
-        label="Email Address"
-        name="email"
-        autoComplete="email"
-        autoFocus
-      />
-      <TextField
-        margin="normal"
-        required
-        fullWidth
-        id="password"
-        label="Password"
-        name="password"
-        autoFocus
-      />
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        sx={{ mt: 3, mb: 2 }}
-      >
-        Login
-      </Button>
-      </form>
-      <Button className="googleLogin Button" onClick={handleGoogleLogin}>
-        <img src={googleLogo} alt="Logo Google" height={40} /></Button>
-      <Link to="/security/register">Register</Link>
-    </Box>
+    </div>
   );
 }
