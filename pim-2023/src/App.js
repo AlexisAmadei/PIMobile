@@ -1,15 +1,18 @@
-import "./App.css";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createTheme } from "@mui/material";
 import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./config/firebaseConfig";
+
+import Logout from "./views/Logout";
 import SecurityLayout from "./layout/SecurityLayout";
 import PrivateLayout from "./layout/PrivateLayout";
 import LoginPage from "./views/LoginPage";
-import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
-import { auth } from "./config/firebaseConfig";
-import { useState } from "react";
-import Logout from "./views/Logout";
-import { createTheme } from "@mui/material";
+import RegisterPage from "./views/RegisterPage";
+import SujetConversation from "./views/SujetConversation";
+
+import "./App.css";
 
 const theme = createTheme({
   typography: {
@@ -31,7 +34,10 @@ export default function App() {
         </Route>
         <Route path="/" element={<PrivateLayout user={user} />}>
           <Route path="logout" element={<Logout />} />
-          <Route path="" element={<HomePage />} />
+          <Route path="/" element={<SujetConversation />}>
+            <Route path="home" element={<HomePage />} />
+          </Route>
+
         </Route>
       </Routes>
     </BrowserRouter>

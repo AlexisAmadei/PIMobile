@@ -13,9 +13,6 @@ export default function PrivateLayout({ user }) {
 
   return (
     <div>
-      <nav>
-        <Link to="/logout">Logout</Link>
-      </nav>
       <Outlet />
     </div>
   );

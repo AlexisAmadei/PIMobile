@@ -11,7 +11,6 @@ import TextField from "@mui/material/TextField";
 import googleLogo from '../assets/googleLogo.svg'
 import "../css/LoginPage.css"
 
-
 export default function LoginPage() {
   const [error, setError] = useState(null);
   const handleLogin = (event) => {
