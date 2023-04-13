@@ -25,7 +25,7 @@ export default function RegisterPage() {
     const profession = formData.get("Profession");
     const email = formData.get("email");
     const password = formData.get("password");
-    const profileComplete = true;
+    const profileComplete = false;
     addDoc(collection(db, "users"), {
       pseudo,
       age,
