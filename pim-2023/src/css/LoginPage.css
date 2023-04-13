@@ -25,6 +25,11 @@
     margin: 8px 0 8px 0;
 }
 
+.loginContainer #seConnecter {
+    align-self: flex-start;
+    margin-bottom: 35px;
+}
+
 .loginContainer p {
     align-self: center;
     font-size: 24px;
@@ -47,11 +52,22 @@
     letter-spacing: -0.165px;
     font-size: 16px;
     align-self: center;
+    font-weight: 500;
+    margin-top: 8px;
 }
 
 .loginContainer .returnToLogin #linkRouter {
     color: #FACA16;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
     text-decoration: none;
+}
+
+.resetPassword a {
+    text-decoration: none;
+    color: #FACA16;
+    font-size: 12px;
+    letter-spacing: -0.165px;
+    font-weight: 700;
+    text-align: center;
 }

@@ -9,6 +9,13 @@ import HomePage from "./views/HomePage";
 import { auth } from "./config/firebaseConfig";
 import { useState } from "react";
 import Logout from "./views/Logout";
+import { createTheme } from "@mui/material";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ['Montserrat', 'sans-serif'].join(','),
+  }
+})
 
 export default function App() {
   const [user, setUser] = useState(null);

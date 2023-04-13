@@ -33,7 +33,7 @@ export default function LoginPage() {
   return (
     <div className="globalLoginContainer">
       <div className="loginContainer">
-        <p>Se connecter</p>
+        <p id="seConnecter">Se connecter</p>
         <form onSubmit={handleLogin} className="loginForm">
           <TextField className="textField"
             id="standard-basic"
@@ -49,6 +49,9 @@ export default function LoginPage() {
             name="password"
             required
           />
+          <p className="resetPassword">
+            <Link id="linkRouter" to="/security/register"> Mot de passe oublié ?</Link>
+          </p>
           <input className="acceptButton" type="submit" value="Continuer" />
           {error && <div style={{ color: "red" }}>{error}</div>}
         </form>
