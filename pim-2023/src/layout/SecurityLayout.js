@@ -5,7 +5,7 @@ export default function SecurityLayout({ user }) {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/home");
     }
   }, [user, navigate]);
 

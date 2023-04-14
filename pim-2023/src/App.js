@@ -19,6 +19,7 @@ import RegisterPage from "./views/RegisterPage";
 import SujetConversation from "./views/SujetConversation";
 import LangSelect from "./views/LanguageSelect";
 import ProfilePage from "./views/Profile";
+import Landing from "./views/LandingPage";
 
 import Loading from "./components/Loading"
 
@@ -28,19 +29,29 @@ export default function App() {
   const [user, setUser] = useState(null);
   onAuthStateChanged(auth, (user) => setUser(user || false));
 
-  // if (user === null) return <Loading />;
+  if (user === null) return <Loading />;
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/security" element={<SecurityLayout user={user} />}>
-          <Route path="register" element={<RegisterPage />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/security" element={<SecurityLayout user={user} />} >
           <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
         </Route>
-        <Route path="/" element={<PrivateLayout user={user} />}>
+        <Route path="/" element={<PrivateLayout user={user} />} >
           <Route path="logout" element={<Logout />} />
-          <Route path="" element={<ProfilePage />} />
+          <Route path="home" element={<HomePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
+
+// <Route path="/security" element={<SecurityLayout user={user} />}>
+//   <Route path="register" element={<RegisterPage />} />
+//   <Route path="login" element={<LoginPage />} />
+// </Route>
+// <Route path="/" element={<PrivateLayout user={user} />}>
+//   <Route path="logout" element={<Logout />} />
+//   <Route path="" element={<ProfilePage />} />
+// </Route>

@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../config/firebaseConfig";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 
 import googleLogo from '../assets/googleLogo.svg'
@@ -13,6 +13,7 @@ import "../css/LoginPage.css"
 
 export default function LoginPage() {
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -24,7 +25,11 @@ export default function LoginPage() {
   };
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).catch((error) => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      navigate("/home");
+    })
+    .catch((error) => {
       setError(error.message);
     });
   };
@@ -35,7 +40,6 @@ export default function LoginPage() {
         <p id="seConnecter">Se connecter</p>
         <form onSubmit={handleLogin} className="loginForm">
           <TextField className="textField"
-            id="standard-basic"
             label="Adresse e-mail"
             name="email"
             autoComplete="email"
@@ -43,7 +47,6 @@ export default function LoginPage() {
             required
           />
           <TextField className="textField"
-            id="standard-basic"
             label="Mot de passe"
             name="password"
             required

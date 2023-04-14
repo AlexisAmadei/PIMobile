@@ -8,20 +8,27 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import 'firebase/firestore';
-import { auth } from "../config/firebaseConfig";
+import { auth, db } from "../config/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup
 } from "firebase/auth";
-import { db } from "../config/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 
 import "../css/RegisterPage.css";
 import googleLogo from '../assets/googleLogo.svg'
+import LanguageSelect from "./LanguageSelect";
+import CenterSelect from "./CenterSelect";
 
 export default function RegisterPage() {
   const [error, setError] = useState(null);
+  const [lang, setLang] = useState(null);
+  const [learnLang, setLearnLang] = useState(null);
+  const [center, setCenter] = useState(null);
+
   const handleRegister = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -31,21 +38,34 @@ export default function RegisterPage() {
     const email = formData.get("email");
     const password = formData.get("password");
     const profileComplete = false;
-    addDoc(collection(db, "users"), {
-      pseudo,
-      age,
-      profession,
-      email,
-      password,
-      profileComplete,
-    });
-    createUserWithEmailAndPassword(auth, email, password).catch((error) => {
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      onAuthStateChanged(auth, (user) => {
+        console.log(user.uid);
+      });
+      setDoc(doc(db, "users", user.uid), {
+        pseudo,
+        age,
+        profession,
+        email,
+        password,
+        profileComplete,
+        lang,
+        learnLang,
+        center,
+      });
+    })
+    .catch((error) => {
       setError(error.message);
     });
   };
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).catch((error) => {
+    signInWithPopup(auth, provider)
+    .catch((error) => {
       setError(error.message);
     });
   };
@@ -55,7 +75,23 @@ export default function RegisterPage() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+  if (lang === null || learnLang === null) {
+    return(
+      <LanguageSelect handleLangSelect={( lang, learnLang) => {
+          setLang(lang);
+          setLearnLang(learnLang);
+        }}
+      />
+    )
+  }
+  if (center === null) {
+    return (
+      <CenterSelect handleCenterSelect={( center ) => {
+          setCenter(center);
+        }}
+      />
+    )
+  }
   return (
     <div className="globalRegisterContainer">
       <div className="registerContainer">
