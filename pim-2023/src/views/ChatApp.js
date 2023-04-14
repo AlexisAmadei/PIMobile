@@ -64,3 +64,5 @@ const ChatApp = () => {
 };
 
 export default ChatApp;
+
+// possibilité de suppr ses données hehe rgpd

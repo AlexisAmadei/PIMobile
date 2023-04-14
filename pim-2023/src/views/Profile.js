@@ -59,8 +59,6 @@ export default function ProfilePage() {
           <img src={profileIcon} height={50} alt="profileIcon" />
           <p className="userName">{pseudo}</p>
         </div>
-        {/* {userInfo.map((userInfo) => (
-        ))} */}
         <div className="breakLine" />
         <div className="languageFlags">
           <img src={frFlag} alt="frFlag"></img>
