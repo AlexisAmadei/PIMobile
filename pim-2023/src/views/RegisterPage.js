@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import TextField from "@mui/material/TextField";
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import 'firebase/firestore';
 import { auth } from "../config/firebaseConfig";
@@ -45,6 +50,12 @@ export default function RegisterPage() {
     });
   };
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className="globalRegisterContainer">
       <div className="registerContainer">
@@ -86,6 +97,22 @@ export default function RegisterPage() {
             label="Mot de passe"
             name="password"
             required
+            type={showPassword ? 'text' : 'password'}
+            InputProps={
+              {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }
+            }
           />
           <p className="cgu">
             En sélectionnant <span>Accepter et continuer</span>, j’accepte les Conditions de service, les Conditions de service relatives aux paiements, la Politique de

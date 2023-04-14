@@ -44,28 +44,28 @@ export default function ProfilePage() {
                 ))}
                 <div className="breakLine" />
                 <div className="languageFlags">
-                    <img src={frFlag}></img>
-                    <img src={pglFlag}></img>
+                    <img src={frFlag} alt="frFlag"></img>
+                    <img src={pglFlag} alt="pglFlag"></img>
                 </div>
                 <div className="settings">
                     <p>Paramètres</p>
                     <li className="listItem">
-                        <img src={profileIcon} height={20} />
+                        <img src={profileIcon} alt="profileIcon" height={20} />
                         <p>Informations personnelles</p>
                     </li>
                     <div className="breakLine" />
                     <li className="listItem">
-                        <img src={bellIcon} height={20} />
+                        <img src={bellIcon} alt="bellIcon" height={20} />
                         <p>Notifications</p>
                     </li>
                     <div className="breakLine" />
                     <li className="listItem">
-                        <img src={langIcon} height={20} />
+                        <img src={langIcon} alt="langIcon" height={20} />
                         <p>Languages</p>
                     </li>
                     <div className="breakLine" />
                     <li onClick={logOut} className="listItem">
-                        <img src={lockIcon} height={20} />
+                        <img src={lockIcon} alt="lockIcon" height={20} />
                         <p>Se deconnecter</p>
                     </li>
                     <div className="breakLine" />
