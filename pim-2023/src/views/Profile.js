@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getFirestore } from "firebase/firestore";
-import { db, auth } from "../config/firebaseConfig";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { db } from "../config/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 
 
 import "../css/Profile.css"
@@ -15,30 +14,29 @@ import lockIcon from "../assets/lockIcon.svg"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function ProfilePage() {
-  const [userUID, setUserUID] = useState([]);
-  const [pseudo, setPseudo] = useState([]);
+  const [userUID, setUserUID] = useState(null);
+  const [pseudo, setPseudo] = useState('');
 
   const logOut = () => {
+    const auth = getAuth();
     auth.signOut();
   };
-  const auth = getAuth();
+
   useEffect(() => {
-    const getUserUID = async () => {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setUserUID(user.uid);
-        }
-      });
-    };
-    const getDocUID = async () => {
-      const docRef = doc(db, "users", userUID);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-      } else {
-        console.log("No such document!");
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserUID(user.uid);
       }
+    });
+    return () => {
+      unsubscribe();
     };
+  }, []);
+
+  useEffect(() => {
+    if (!userUID) return;
+
     const getElementInDoc = async () => {
       const docRef = doc(db, "users", userUID);
       const docSnap = await getDoc(docRef);
@@ -49,12 +47,10 @@ export default function ProfilePage() {
         console.log("No such document!");
       }
     };
-    getUserUID();
-    getDocUID();
+
     getElementInDoc();
-  }, []);
-  console.log('user uid', userUID);
-  console.log('pseudo', pseudo);
+  }, [userUID]);
+
   return (
     <div className="globalProfileContainer">
       <div className="profileContainer">
