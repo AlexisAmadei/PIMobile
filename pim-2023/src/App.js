@@ -24,6 +24,7 @@ import Landing from "./views/LandingPage";
 import Loading from "./components/Loading"
 
 import "./App.css";
+import ChatApp from "./views/ChatApp";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="logout" element={<Logout />} />
           <Route path="home" element={<HomePage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="chatApp" element={<ChatApp />} />
         </Route>
       </Routes>
     </BrowserRouter>
