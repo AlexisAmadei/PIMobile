@@ -201,6 +201,7 @@
     letter-spacing: -0.165px;
     color: #222222;
 }
+
 .landingFooter {
     position: absolute;
     width: 390px;
@@ -215,6 +216,7 @@
     justify-content: space-around;
     align-items: center;
 }
+
 .landingFooter .footerItem {
     font-family: 'Montserrat';
     font-style: normal;
@@ -227,4 +229,36 @@
     text-decoration-line: underline;
 
     color: #222222;
+}
+
+.landingBody #blob1 {
+    position: absolute;
+    width: 268px;
+    height: 118px;
+    left: 43px;
+    top: 870px;
+}
+
+.landingBody #blob2 {
+    position: absolute;
+    width: 287.04px;
+    height: 85.61px;
+    left: 43px;
+    top: 1060px;
+}
+
+.landingBody #blob3 {
+    position: absolute;
+    width: 236.68px;
+    height: 88.36px;
+    left: 43px;
+    top: 1210px;
+}
+
+.landingBody #blob4 {
+    position: absolute;
+    width: 319.87px;
+    height: 137px;
+    left: 43px;
+    top: 1350px;
 }

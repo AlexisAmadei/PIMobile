@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { db } from "../config/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 
+import { Icon } from '@iconify/react';
+import flagFrance from '@iconify/icons-twemoji/flag-france';
+import flagEngland from '@iconify/icons-twemoji/flag-england';
+import flagItaly from '@iconify/icons-twemoji/flag-italy';
+import flagSpain from '@iconify/icons-twemoji/flag-spain';
+import flagGermany from '@iconify/icons-twemoji/flag-germany';
+import flagPortugal from '@iconify/icons-twemoji/flag-portugal';
+import flagRussia from '@iconify/icons-twemoji/flag-russia';
 
 import "../css/Profile.css"
 
 import profileIcon from "../assets/profileIcon.svg"
-import frFlag from "../assets/frFlag.svg"
-import pglFlag from "../assets/pglFlag.svg"
 import bellIcon from "../assets/bell.svg"
 import langIcon from "../assets/langIcon.svg"
 import lockIcon from "../assets/lockIcon.svg"
@@ -16,6 +22,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default function ProfilePage() {
   const [userUID, setUserUID] = useState(null);
   const [pseudo, setPseudo] = useState('');
+  const [flag1, setFlag1] = useState("");
+  const [flag2, setFlag2] = useState("");
 
   const logOut = () => {
     const auth = getAuth();
@@ -41,13 +49,34 @@ export default function ProfilePage() {
       const docRef = doc(db, "users", userUID);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data().pseudo);
         setPseudo(docSnap.data().pseudo);
       } else {
         console.log("No such document!");
       }
     };
-
+    const getFlags = async () => {
+      const docRef = doc(db, "users", userUID);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        if (docSnap.data().nativeLang === "frLang") setFlag1(flagFrance);
+        if (docSnap.data().nativeLang === "enLang") setFlag1(flagEngland);
+        if (docSnap.data().nativeLang === "itLang") setFlag1(flagItaly);
+        if (docSnap.data().nativeLang === "esLang") setFlag1(flagSpain);
+        if (docSnap.data().nativeLang === "deLang") setFlag1(flagGermany);
+        if (docSnap.data().nativeLang === "ptLang") setFlag1(flagPortugal);
+        if (docSnap.data().nativeLang === "ruLang") setFlag1(flagRussia);
+        if (docSnap.data().learnLang === "frLang") setFlag2(flagFrance);
+        if (docSnap.data().learnLang === "itLang") setFlag2(flagItaly);
+        if (docSnap.data().learnLang === "enLang") setFlag2(flagEngland);
+        if (docSnap.data().learnLang === "esLang") setFlag2(flagSpain);
+        if (docSnap.data().learnLang === "deLang") setFlag2(flagGermany);
+        if (docSnap.data().learnLang === "ptLang") setFlag2(flagPortugal);
+        if (docSnap.data().learnLang === "ruLang") setFlag2(flagRussia);
+      } else {
+        console.log("No such document!");
+      }
+    };
+    getFlags();
     getElementInDoc();
   }, [userUID]);
 
@@ -61,8 +90,8 @@ export default function ProfilePage() {
         </div>
         <div className="breakLine" />
         <div className="languageFlags">
-          <img src={frFlag} alt="frFlag"></img>
-          <img src={pglFlag} alt="pglFlag"></img>
+          <Icon icon={flag1} width={80} height={80} />
+          <Icon icon={flag2} width={80} height={80} />
         </div>
         <div className="settings">
           <p>Paramètres</p>

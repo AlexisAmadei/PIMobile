@@ -38,41 +38,10 @@ export default function BasicSelect({ label, getReturnValue }) {
           <MenuItem value="esLang">Espagnol</MenuItem>
           <MenuItem value="deLang">Allemand</MenuItem>
           <MenuItem value="itLang">Italien</MenuItem>
+          <MenuItem value="ptLang">Portugais</MenuItem>
+          <MenuItem value="ruLang">Russe</MenuItem>
         </Select>
       </FormControl>
     </Box>
   );
 }
-
-// export default function BasicSelect(props, { getReturnValue }) {
-//   const [nativeLang, setNativeLang] = React.useState('');
-//   const WindowWidth = useWindowWidth();
-
-//   const handleChange = (event) => {
-//     setNativeLang(event.target.value);
-//   };
-//   const styles = {
-//     minWidth: (WindowWidth * 0.8),
-//   }
-
-//   return (
-//     <Box sx={{ minWidth: styles }}>
-//       <FormControl fullWidth>
-//         <InputLabel id="demo-simple-select-label">{props.label}</InputLabel>
-//         <Select
-//           labelId="demo-simple-select-label"
-//           id="demo-simple-select"
-//           value={nativeLang}
-//           label={props.label}
-//           onChange={handleChange}
-//         >
-//           <MenuItem value="frLang">Français</MenuItem>
-//           <MenuItem value="enLang">Anglais</MenuItem>
-//           <MenuItem value="esLang">Espagnol</MenuItem>
-//           <MenuItem value="deLang">Allemand</MenuItem>
-//           <MenuItem value="itLang">Italien</MenuItem>
-//         </Select>
-//       </FormControl>
-//     </Box>
-//   );
-// }

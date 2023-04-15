@@ -7,6 +7,10 @@ import logo from "../assets/logoLimo.svg";
 import Illustration from "../assets/IllusLandingPage.svg";
 import FooterBackground from "../assets/landingFotterBack.svg";
 import arrowDown from "../assets/arrowDown.svg";
+import blob1 from "../assets/blob1.svg";
+import blob2 from "../assets/blob2.svg";
+import blob3 from "../assets/blob3.svg";
+import blob4 from "../assets/blob4.svg";
 
 export default function LandingPage() {
 
@@ -41,9 +45,13 @@ export default function LandingPage() {
         <Link id="ConnectButton" to="/security/login">Se Connecter</Link>
         <a href="#pres1" class="smooth-scroll"><img id="arrowDown" src={arrowDown} alt="arrowDown" /></a>
         <p id="pres1">Nous sommes convaincus que l'apprentissage d'une langue va bien au-delà des simples règles grammaticales et vocabulaires. Cela vous permet de découvrir le monde à travers les yeux d'une autre personne.</p>
+        <img id="blob1" src={blob1} alt="blob1" />
         <p id="pres2">Notre application a été conçue pour vous aider à améliorer vos compétences linguistiques tout en découvrant de nouvelles cultures et passions.</p>
+        <img id="blob2" src={blob2} alt="blob2" />
         <p id="pres3">Connectez-vous avec des locuteurs natifs de votre langue cible qui partagent vos centres d’intérêts.</p>
+        <img id="blob3" src={blob3} alt="blob3" />
         <p id="pres4">Que vous soyez passionné par la gastronomie, la musique ou tout autre sujet, vous pouvez trouver des partenaires d'échange qui partagent votre passion. Cela rendra vos conversations plus intéressantes, plus engageantes et plus amusantes !</p>
+        <img id="blob4" src={blob4} alt="blob4" />
       </div>
       <div className="landingFooter">
         <p id="mentionsLegales" className="footerItem">Mention Légales</p>
