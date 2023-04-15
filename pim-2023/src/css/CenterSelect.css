@@ -1,0 +1,25 @@
+.globalCenterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.centerContainer #head {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

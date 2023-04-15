@@ -60,3 +60,10 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.langFooter {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+}

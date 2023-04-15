@@ -25,7 +25,7 @@ import CenterSelect from "./CenterSelect";
 
 export default function RegisterPage() {
   const [error, setError] = useState(null);
-  const [lang, setLang] = useState(null);
+  const [nativeLang, setLang] = useState(null);
   const [learnLang, setLearnLang] = useState(null);
   const [center, setCenter] = useState(null);
 
@@ -43,9 +43,6 @@ export default function RegisterPage() {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      onAuthStateChanged(auth, (user) => {
-        console.log(user.uid);
-      });
       setDoc(doc(db, "users", user.uid), {
         pseudo,
         age,
@@ -53,7 +50,7 @@ export default function RegisterPage() {
         email,
         password,
         profileComplete,
-        lang,
+        nativeLang,
         learnLang,
         center,
       });
@@ -75,10 +72,10 @@ export default function RegisterPage() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  if (lang === null || learnLang === null) {
+  if (nativeLang === null || learnLang === null) {
     return(
-      <LanguageSelect handleLangSelect={( lang, learnLang) => {
-          setLang(lang);
+      <LanguageSelect handleLangSelect={( nativeLang, learnLang) => {
+          setLang(nativeLang);
           setLearnLang(learnLang);
         }}
       />
@@ -100,28 +97,24 @@ export default function RegisterPage() {
           <TextField className="textField"
             margin="normal"
             required
-            id="standard-basic"
             label="Pseudo"
             name="pseudo"
             autoFocus
           />
           <TextField className="textField"
             margin="normal"
-            id="standard-basic"
             label="Age"
             name="age"
             required
           />
           <TextField className="textField"
             margin="normal"
-            id="standard-basic"
             label="Profession"
             name="Profession"
             required
           />
           <TextField className="textField"
             margin="normal"
-            id="standard-basic"
             label="Adresse e-mail"
             name="email"
             autoComplete="email"
@@ -129,7 +122,6 @@ export default function RegisterPage() {
           />
           <TextField className="textField"
             margin="normal"
-            id="standard-basic"
             label="Mot de passe"
             name="password"
             required

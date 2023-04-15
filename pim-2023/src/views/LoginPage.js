@@ -12,6 +12,7 @@ import googleLogo from '../assets/googleLogo.svg'
 import "../css/LoginPage.css"
 
 export default function LoginPage() {
+  const arrow = "←";
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleLogin = (event) => {
@@ -38,6 +39,7 @@ export default function LoginPage() {
     <div className="globalLoginContainer">
       <div className="loginContainer">
         <p id="seConnecter">Se connecter</p>
+        <p id="backToLanding">{arrow} <Link id="linkRouter" to="/">retour</Link></p>
         <form onSubmit={handleLogin} className="loginForm">
           <TextField className="textField"
             label="Adresse e-mail"
