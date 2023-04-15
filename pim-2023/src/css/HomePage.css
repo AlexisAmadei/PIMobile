@@ -1,50 +1,32 @@
-.globalThemeContainer {
+.globalHomeContainer {
     display: flex;
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    align-items: center;
-    padding: 0px;
     flex-direction: column;
 }
 
-.dropdownthemeContainer {
+.headerHome {
     display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: flex-end;
-    padding: 24px;
-    width: 80vw;
-    height: 55vh;
-    margin: 16px;
-}
-
-.validateButtonContainer {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: flex-end;
-    padding: 24px;
-    width: 80vw;
-    height: 40vh;
-    margin: 16px;
-}
-
-.validateButtonContainer button {
-    padding: 16px 0px;
-    gap: 8px;
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
-    height: 50px;
-    background: #FACA16;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    align-items: center;
 }
 
-.validateButtonContainer #linkrouter {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.17px;
+.homeContainer {
+    width: 100vw;
+    height: 139px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.headerRight {
+    display: flex;
+    gap: 24px;
+}
+
+.headerCenter {
+    position: absolute;
 }
