@@ -49,12 +49,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
-// <Route path="/security" element={<SecurityLayout user={user} />}>
-//   <Route path="register" element={<RegisterPage />} />
-//   <Route path="login" element={<LoginPage />} />
-// </Route>
-// <Route path="/" element={<PrivateLayout user={user} />}>
-//   <Route path="logout" element={<Logout />} />
-//   <Route path="" element={<ProfilePage />} />
-// </Route>

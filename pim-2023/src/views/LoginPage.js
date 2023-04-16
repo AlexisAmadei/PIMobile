@@ -15,6 +15,7 @@ export default function LoginPage() {
   const arrow = "←";
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
   const handleLogin = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);

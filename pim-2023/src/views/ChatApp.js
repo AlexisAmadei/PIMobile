@@ -1,61 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
-import { db } from "../config/firebaseConfig";
-
-import '../css/ChatApp.css';
+import React, { useState, useEffect } from 'react';
+import { db } from '../config/firebaseConfig';
+import { collection, addDoc, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 
 const ChatApp = () => {
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
-  const messagesEndRef = useRef(null);
+  const [input, setInput] = useState('');
+
+  const currentUser = localStorage.getItem('currentUser');
+  const destinationUser = localStorage.getItem('destinationUser');
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      query(collection(db, 'messages'), orderBy('timestamp')),
-      (snapshot) => {
-        setMessages(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
-      }
-    );
+    const messagesRef = collection(db, 'messages');
+    const messagesQuery = query(messagesRef, orderBy('timestamp', 'asc'));
+
+    const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
+      setMessages(
+        snapshot.docs
+          .map((doc) => doc.data())
+          .filter(
+            (message) =>
+              (message.from === currentUser && message.to === destinationUser) ||
+              (message.from === destinationUser && message.to === currentUser)
+          )
+      );
+    });
 
     return () => {
       unsubscribe();
     };
-  }, []);
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  }, [currentUser, destinationUser, db]);
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
 
-    await addDoc(collection(db, 'messages'), {
-      text: inputMessage,
-      timestamp: new Date(),
-    });
+    try {
+      await addDoc(collection(db, 'messages'), {
+        from: currentUser,
+        to: destinationUser,
+        message: input,
+        timestamp: serverTimestamp(),
+      });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
 
-    setInputMessage('');
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    setInput('');
   };
 
   return (
-    <div className="chat-app">
-      <div className="messages">
-        {messages.map(({ id, data }) => (
-          <p key={id}>{data.text}</p>
+    <div className="chatApp">
+      <div className="chatApp__messages">
+        {messages.map((message) => (
+          <p key={message.timestamp} className={message.from === currentUser ? 'sent' : 'received'}>
+            {message.message}
+          </p>
         ))}
-        <div ref={messagesEndRef} />
       </div>
-      <form onSubmit={sendMessage}>
+      <form onSubmit={sendMessage} className="chatApp__input">
         <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           type="text"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          placeholder="Type a message"
+          placeholder="Type a message..."
         />
         <button type="submit">Send</button>
       </form>
@@ -64,5 +70,3 @@ const ChatApp = () => {
 };
 
 export default ChatApp;
-
-// possibilité de suppr ses données hehe rgpd

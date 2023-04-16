@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { db } from "../config/firebaseConfig";
+import { auth, db } from "../config/firebaseConfig";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 
 import logoText from "../assets/logoText.svg";
@@ -13,10 +13,13 @@ import iconChatApp from "../assets/iconChatApp.svg";
 import iconProfile from "../assets/iconProfile.svg";
 
 import ProfileCard from "../components/ProfileCard";
+import { onAuthStateChanged } from "firebase/auth";
+import { setCurrentUser, setDestinationUser } from "../utils/CurrentUser";
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [userUID, setUserUID] = useState(null);
 
   const handleClickChat = () => {
     navigate("/chatApp");
@@ -26,17 +29,26 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    const getUserUID = async () => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setUserUID(user.uid);
+          setCurrentUser(user.uid);
+        }
+      });
+      return () => {
+        unsubscribe();
+      };
+    };
     const getAllUsers = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       const usersData = [];
       querySnapshot.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
-        // console.log("test age", doc.data().age);
         usersData.push({ id: doc.id, ...doc.data() });
-        console.log("test usersData", usersData);
       });
       setUsers(usersData);
     };
+    getUserUID();
     getAllUsers();
   }, []);
   return (
@@ -61,9 +73,10 @@ export default function HomePage() {
             key={user.id}
             age={user.age}
             pseudo={user.pseudo}
-            profession={user.profession}
             centerInterest={user.center}
             nativeLang={user.nativeLang}
+            profession={user.profession}
+            userUID={user.id}
           />
         ))}
       </div>
