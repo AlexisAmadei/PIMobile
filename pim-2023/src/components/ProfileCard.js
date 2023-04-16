@@ -6,6 +6,12 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { Icon } from "@iconify/react";
 import flagFrance from "@iconify/icons-twemoji/flag-france";
+import flagEngland from "@iconify/icons-twemoji/flag-england";
+import flagItaly from "@iconify/icons-twemoji/flag-italy";
+import flagSpain from "@iconify/icons-twemoji/flag-spain";
+import flagGermany from "@iconify/icons-twemoji/flag-germany";
+import flagPortugal from "@iconify/icons-twemoji/flag-portugal";
+import flagRussia from "@iconify/icons-twemoji/flag-russia";
 
 import "../css/ProfileCard.css";
 import profileIcon from "../assets/profileIcon.svg";
@@ -13,6 +19,7 @@ import Star from "../assets/star.svg";
 
 export default function ProfileCard(props) {
   const [displayLang, setDisplayLang] = useState("");
+  const [displayFlag, setDisplayFlag] = useState("");
   useEffect(() => {
     if (props.nativeLang === "frLang") setDisplayLang("Français");
     if (props.nativeLang === "enLang") setDisplayLang("Anglais");
@@ -21,6 +28,14 @@ export default function ProfileCard(props) {
     if (props.nativeLang === "deLang") setDisplayLang("Allemand");
     if (props.nativeLang === "ptLang") setDisplayLang("Portugais");
     if (props.nativeLang === "ruLang") setDisplayLang("Russe");
+
+    if (props.nativeLang === "frLang") setDisplayFlag(flagFrance);
+    if (props.nativeLang === "enLang") setDisplayFlag(flagEngland);
+    if (props.nativeLang === "itLang") setDisplayFlag(flagItaly);
+    if (props.nativeLang === "esLang") setDisplayFlag(flagSpain);
+    if (props.nativeLang === "deLang") setDisplayFlag(flagGermany);
+    if (props.nativeLang === "ptLang") setDisplayFlag(flagPortugal);
+    if (props.nativeLang === "ruLang") setDisplayFlag(flagRussia);
   }, []);
   return (
     <div className="globalCardContainer">
@@ -40,7 +55,7 @@ export default function ProfileCard(props) {
           <p className="cardCategoryTitle">Voyage</p>
         </div>
         <div className="cardLang">
-          <Icon id="flagIcon" icon={flagFrance} width={38} />
+          <Icon id="flagIcon" icon={displayFlag} width={38} />
           <p>{displayLang}</p>
         </div>
         <div className="cardFooter">

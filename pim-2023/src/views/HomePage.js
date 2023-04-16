@@ -55,7 +55,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div key={users.id}>
+      <div className="bodyHome" key={users.id}>
         {users.map((user) => (
           <ProfileCard
             key={user.id}
