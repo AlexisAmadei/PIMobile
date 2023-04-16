@@ -1,7 +1,11 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+import { db } from "../config/firebaseConfig";
+import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 
 import logoText from "../assets/logoText.svg";
 import groupSquares from "../assets/groupSquares.svg";
@@ -12,12 +16,29 @@ import ProfileCard from "../components/ProfileCard";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+
   const handleClickChat = () => {
     navigate("/chatApp");
   };
   const handleClickProfile = () => {
     navigate("/profile");
   };
+
+  useEffect(() => {
+    const getAllUsers = async () => {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      const usersData = [];
+      querySnapshot.forEach((doc) => {
+        // console.log(doc.id, " => ", doc.data());
+        // console.log("test age", doc.data().age);
+        usersData.push({ id: doc.id, ...doc.data() });
+        console.log("test usersData", usersData);
+      });
+      setUsers(usersData);
+    };
+    getAllUsers();
+  }, []);
   return (
     <div className="globalHomeContainer">
       <div className="headerContainer">
@@ -34,10 +55,17 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div>
-        <ProfileCard />
-        <ProfileCard />
-        <ProfileCard />
+      <div key={users.id}>
+        {users.map((user) => (
+          <ProfileCard
+            key={user.id}
+            age={user.age}
+            pseudo={user.pseudo}
+            profession={user.profession}
+            centerInterest={user.center}
+            nativeLang={user.nativeLang}
+          />
+        ))}
       </div>
     </div>
   );

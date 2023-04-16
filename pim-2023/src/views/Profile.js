@@ -44,7 +44,6 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!userUID) return;
-
     const getElementInDoc = async () => {
       const docRef = doc(db, "users", userUID);
       const docSnap = await getDoc(docRef);

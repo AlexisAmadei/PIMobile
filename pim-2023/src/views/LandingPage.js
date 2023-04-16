@@ -43,7 +43,7 @@ export default function LandingPage() {
         <img id="illustration" src={Illustration} alt="Illustration" />
         <Link id="StartButton" to="/security/register">Commencer maintenant</Link>
         <Link id="ConnectButton" to="/security/login">Se Connecter</Link>
-        <a href="#pres1" class="smooth-scroll"><img id="arrowDown" src={arrowDown} alt="arrowDown" /></a>
+        <a href="#pres1" className="smooth-scroll"><img id="arrowDown" src={arrowDown} alt="arrowDown" /></a>
         <p id="pres1">Nous sommes convaincus que l'apprentissage d'une langue va bien au-delà des simples règles grammaticales et vocabulaires. Cela vous permet de découvrir le monde à travers les yeux d'une autre personne.</p>
         <img id="blob1" src={blob1} alt="blob1" />
         <p id="pres2">Notre application a été conçue pour vous aider à améliorer vos compétences linguistiques tout en découvrant de nouvelles cultures et passions.</p>

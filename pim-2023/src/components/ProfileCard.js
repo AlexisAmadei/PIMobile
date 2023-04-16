@@ -12,18 +12,25 @@ import profileIcon from "../assets/profileIcon.svg";
 import Star from "../assets/star.svg";
 
 export default function ProfileCard(props) {
-  const { pseudo, age, job, centerInterest, lang } = props;
-
+  const [displayLang, setDisplayLang] = useState("");
+  useEffect(() => {
+    if (props.nativeLang === "frLang") setDisplayLang("Français");
+    if (props.nativeLang === "enLang") setDisplayLang("Anglais");
+    if (props.nativeLang === "itLang") setDisplayLang("Italien");
+    if (props.nativeLang === "esLang") setDisplayLang("Espagnol");
+    if (props.nativeLang === "deLang") setDisplayLang("Allemand");
+    if (props.nativeLang === "ptLang") setDisplayLang("Portugais");
+    if (props.nativeLang === "ruLang") setDisplayLang("Russe");
+  }, []);
   return (
     <div className="globalCardContainer">
       <div className="card">
         <div className="cardHeader">
           <img src={profileIcon} height={56} width={56} alt="profileIcon" />
           <div className="cardHeaderInfo">
-            <p className="cardPseudo">Séb Garnier</p>
-            <p className="cardAge">25 ans, cadreur video</p>
+            <p className="cardPseudo">{props.pseudo}</p>
+            <p className="cardAge">{props.age}, {}</p>
           </div>
-
         </div>
         <div className="cardCategory">
           <p className="cardCategoryTitle">Jeux-vidéos</p>
@@ -34,7 +41,7 @@ export default function ProfileCard(props) {
         </div>
         <div className="cardLang">
           <Icon id="flagIcon" icon={flagFrance} width={38} />
-          <p>Italien</p>
+          <p>{displayLang}</p>
         </div>
         <div className="cardFooter">
           <p><img src={Star} />5.00 <span id="nbReviews">(18)</span></p>
