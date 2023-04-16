@@ -36,6 +36,8 @@ export default function HomePage() {
       </div>
       <div>
         <ProfileCard />
+        <ProfileCard />
+        <ProfileCard />
       </div>
     </div>
   );
