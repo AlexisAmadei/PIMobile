@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
-import $ from 'jquery'; // import jQuery
+import $ from 'jquery';
 
 import "../css/LandingPage.css";
 import logo from "../assets/logoLimo.svg";
