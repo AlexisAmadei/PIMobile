@@ -28,6 +28,7 @@
     left: 0;
     right: 0;
     background-color: white;
+    margin-bottom: 16px;
 }
 
 .chatApp__messages {
