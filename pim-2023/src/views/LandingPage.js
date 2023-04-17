@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import $ from 'jquery';
 
 import "../css/LandingPage.css";

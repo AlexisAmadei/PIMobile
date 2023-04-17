@@ -13,7 +13,6 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
-  onAuthStateChanged,
   signInWithPopup
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";

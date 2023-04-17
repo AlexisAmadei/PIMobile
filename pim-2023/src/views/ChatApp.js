@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../config/firebaseConfig';
 import { collection, addDoc, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from 'react-router-dom';
 
 import '../css/ChatApp.css';
+import leftChevron from '../assets/leftChevron.svg';
 
 const ChatApp = () => {
   const [messages, setMessages] = useState([]);
@@ -10,11 +12,13 @@ const ChatApp = () => {
 
   const currentUser = localStorage.getItem('currentUser');
   const destinationUser = localStorage.getItem('destinationUser');
+  const destPseudo = localStorage.getItem('destPseudo');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const messagesRef = collection(db, 'messages');
     const messagesQuery = query(messagesRef, orderBy('timestamp', 'asc'));
-
     const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
       setMessages(
         snapshot.docs
@@ -26,15 +30,12 @@ const ChatApp = () => {
           )
       );
     });
-
     return () => {
       unsubscribe();
     };
   }, [currentUser, destinationUser, db]);
-
   const sendMessage = async (e) => {
     e.preventDefault();
-
     try {
       await addDoc(collection(db, 'messages'), {
         from: currentUser,
@@ -45,12 +46,17 @@ const ChatApp = () => {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-
     setInput('');
   };
-
+  const handleBackButton = () => {
+    navigate(-1);
+  };
   return (
     <div className="chatApp">
+      <div className='chatAppHeader'>
+        <img id="headerChevron" src={leftChevron} onClick={handleBackButton} />
+        <p id='pseudo'>{destPseudo}</p>
+      </div>
       <div className="chatApp__messages">
         {messages.map((message) => (
           <p key={message.timestamp} className={message.from === currentUser ? 'sent' : 'received'}>

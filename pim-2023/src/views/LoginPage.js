@@ -1,11 +1,13 @@
+import React, { useState } from "react";
+
+import { Link, useNavigate } from "react-router-dom";
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import React, { useState } from "react";
 import { auth } from "../config/firebaseConfig";
-import { Link, useNavigate } from "react-router-dom";
+
 import TextField from "@mui/material/TextField";
 
 import googleLogo from '../assets/googleLogo.svg'

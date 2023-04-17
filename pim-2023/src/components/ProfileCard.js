@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { db, auth } from "../config/firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
 
 import { Icon } from "@iconify/react";
 import flagFrance from "@iconify/icons-twemoji/flag-france";
@@ -13,7 +11,7 @@ import flagGermany from "@iconify/icons-twemoji/flag-germany";
 import flagPortugal from "@iconify/icons-twemoji/flag-portugal";
 import flagRussia from "@iconify/icons-twemoji/flag-russia";
 
-import { setDestinationUser } from "../utils/CurrentUser";
+import { setDestinationUser, setDestPseudo } from "../utils/CurrentUser";
 
 import "../css/ProfileCard.css";
 import profileIcon from "../assets/profileIcon.svg";
@@ -43,11 +41,11 @@ export default function ProfileCard(props) {
     if (props.nativeLang === "ruLang") setDisplayFlag(flagRussia);
   }, []);
 
-  const handleSpeakButton = (userUID) => {
+  const handleSpeakButton = (userUID, userPseudo) => {
     setDestinationUser(userUID);
     setDestUserUID(userUID);
+    setDestPseudo(userPseudo);
     navigate("/chatApp");
-    console.log("destUserUID", destUserUID);
   };
 
   return (
@@ -69,7 +67,7 @@ export default function ProfileCard(props) {
         </div>
         <div className="cardFooter">
           <p><img src={Star} />5.00 <span id="nbReviews">(18)</span></p>
-          <button onClick={() => handleSpeakButton(props.userUID)} id="speakButton">Parler</button>
+          <button onClick={() => handleSpeakButton(props.userUID, props.pseudo)} id="speakButton">Parler</button>
         </div>
       </div>
     </div>

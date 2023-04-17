@@ -1,11 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { auth, db } from "../config/firebaseConfig";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 
 import logoText from "../assets/logoText.svg";
 import groupSquares from "../assets/groupSquares.svg";
@@ -14,7 +13,7 @@ import iconProfile from "../assets/iconProfile.svg";
 
 import ProfileCard from "../components/ProfileCard";
 import { onAuthStateChanged } from "firebase/auth";
-import { setCurrentUser, setDestinationUser } from "../utils/CurrentUser";
+import { setCurrentUser } from "../utils/CurrentUser";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -56,14 +55,14 @@ export default function HomePage() {
       <div className="headerContainer">
         <div className="headerHome">
           <div className="headerLeft">
-            <img src={groupSquares} />
+            <img src={groupSquares} alt="groupSquares" />
           </div>
           <div className="headerCenter">
-            <img src={logoText} />
+            <img src={logoText} alt="limo logo"/>
           </div>
           <div className="headerRight">
-            <img onClick={handleClickChat} id="left" src={iconChatApp} />
-            <img onClick={handleClickProfile} id="right" src={iconProfile} />
+            <img onClick={handleClickChat} id="left" src={iconChatApp} alt="iconChatApp" />
+            <img onClick={handleClickProfile} id="right" src={iconProfile} alt="iconProfile" />
           </div>
         </div>
       </div>

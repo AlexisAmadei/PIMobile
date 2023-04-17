@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/CenterSelect.css";
+
 import CategoryCard from "../components/categoryCard";
 import gamingIcon from "../assets/gamingIcon.svg";
 import musicIcon from "../assets/musicIcon.svg";
@@ -7,6 +7,8 @@ import cinemaIcon from "../assets/cinemaIcon.svg";
 import cookingIcon from "../assets/cookingIcon.svg";
 import sportIcon from "../assets/sportIcon.svg";
 import modeIcon from "../assets/modeIcon.svg";
+
+import "../css/CenterSelect.css";
 
 export default function CenterSelect({ handleCenterSelect }) {
   const [center, setCenter] = useState(null);

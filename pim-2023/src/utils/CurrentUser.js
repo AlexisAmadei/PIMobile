@@ -13,3 +13,7 @@ export function setDestinationUser(destUser) {
 export function getDestinationUser() {
     return JSON.parse(localStorage.getItem('destinationUser'));
 }
+
+export function setDestPseudo(destPseudo) {
+    localStorage.setItem('destPseudo', destPseudo.toString());
+}
