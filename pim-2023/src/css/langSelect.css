@@ -45,6 +45,7 @@
     border-radius: 8px;
     width: 90%;
     height: 50px;
+    border: none;
 }
 
 .langContainer .returnToLogin {
@@ -66,4 +67,29 @@
     flex-direction: column;
     position: absolute;
     bottom: 0;
+}
+
+.learnLangSelect {
+    display: flex;
+    flex-direction: column;
+}
+
+.langFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 16px;
+    width: fit-content;
+}
+
+.langSelectValidate button {
+    color: white;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+}
+
+.learnLangSelect p {
+    margin-bottom: 5px;
 }

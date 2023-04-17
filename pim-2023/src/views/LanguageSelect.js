@@ -14,24 +14,28 @@ export default function LanguageSelect({ handleLangSelect }) {
   return (
     <div className="globalLangContainer">
       <div className="langContainer">
-        <p>Quelle langue maitrisez-vous ?</p>
-        <div className="knowLangContainer">
-          <BasicSelect
-            label="Langue native"
-            getReturnValue={(retLang) => {
-              setRetLang(retLang);
-            }}
-          />
+        <div className="learnLangSelect">
+          <p>Langue native :</p>
+          <div className="knowLangContainer">
+            <BasicSelect
+              label="Langue native"
+              getReturnValue={(retLang) => {
+                setRetLang(retLang);
+              }}
+            />
+          </div>
         </div>
-        <div style={{ height: "24px" }}></div>
-        <p>Quelle langue maitrisez-vous ?</p>
-        <div className="learnLangContainer">
-          <BasicSelect
-            label="Langue à apprendre"
-            getReturnValue={(retLearnLang) => {
-              setRetLearnLang(retLearnLang);
-            }}
-          />
+        <div style={{ height: "48px" }}></div>
+        <div className="learnLangSelect">
+          <p id="learnLangAsk" >Langue à apprendre :</p>
+          <div className="learnLangContainer">
+            <BasicSelect
+              label="Langue à apprendre"
+              getReturnValue={(retLearnLang) => {
+                setRetLearnLang(retLearnLang);
+              }}
+            />
+          </div>
         </div>
         <div className="langFooter">
           <div className="langSelectValidate">
