@@ -28,8 +28,10 @@ export default function CenterSelect({ handleCenterSelect }) {
   return (
     <div className="globalCenterContainer">
       <div className="centerContainer">
-        <h1 id="head">Partage ce que tu aimes</h1>
-        <p>Selectionnes un thème qui t'interesses</p>
+        <div className="centerHeader">
+          <h1>Partage ce que tu aimes</h1>
+          <p>Selectionnes un thème qui t'interesses</p>
+        </div>
         <div className="categoryContainer">
           <CategoryCard
             image={gamingIcon}

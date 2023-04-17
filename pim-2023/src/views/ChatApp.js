@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../config/firebaseConfig';
 import { collection, addDoc, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 
+import '../css/ChatApp.css';
+
 const ChatApp = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
