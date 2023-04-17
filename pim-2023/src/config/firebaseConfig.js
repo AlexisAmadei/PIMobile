@@ -3,13 +3,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA6fDSBZ8KZlCyt75xOOLuetUBDJefqhjA",
-    authDomain: "pimobile-41942.firebaseapp.com",
-    projectId: "pimobile-41942",
-    storageBucket: "pimobile-41942.appspot.com",
-    messagingSenderId: "949606428284",
-    appId: "1:949606428284:web:a94186d437339e76c723f9",
-    measurementId: "G-Y6HVPDZK6R"
+    apiKey: "AIzaSyDa_7QWVqlMKGLwxcDcrMVWtxTBx-SIUSA",
+    authDomain: "limo-56eb1.firebaseapp.com",
+    projectId: "limo-56eb1",
+    storageBucket: "limo-56eb1.appspot.com",
+    messagingSenderId: "695754957441",
+    appId: "1:695754957441:web:7d9df3d777e5475aa32380",
+    measurementId: "G-EBPG858B0L"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -39,8 +39,8 @@ export default function LandingPage() {
         <p id="joinus">
           Rejoignez notre communauté d'échange linguistique dès maintenant !
         </p>
-        <img id="footerBackground" src={FooterBackground} alt="Footer" loading="lazy" />
         <img id="illustration" src={Illustration} alt="Illustration" loading="lazy" />
+        <img id="footerBackground" src={FooterBackground} alt="Footer" loading="lazy" />
         <Link id="StartButton" to="/security/register">Commencer maintenant</Link>
         <Link id="ConnectButton" to="/security/login">Se Connecter</Link>
         <a href="#pres1" className="smooth-scroll"><img id="arrowDown" src={arrowDown} alt="arrowDown" /></a>
