@@ -50,7 +50,7 @@ export default function ProfilePage() {
       if (docSnap.exists()) {
         setPseudo(docSnap.data().pseudo);
       } else {
-        console.log("No such document!");
+        console.error("No such document!");
       }
     };
     const getFlags = async () => {
@@ -72,7 +72,7 @@ export default function ProfilePage() {
         if (docSnap.data().learnLang === "ptLang") setFlag2(flagPortugal);
         if (docSnap.data().learnLang === "ruLang") setFlag2(flagRussia);
       } else {
-        console.log("No such document!");
+        console.error("No such document!");
       }
     };
     getFlags();

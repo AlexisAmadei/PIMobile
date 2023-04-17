@@ -15,10 +15,11 @@ import ProfileCard from "../components/ProfileCard";
 import { onAuthStateChanged } from "firebase/auth";
 import { setCurrentUser } from "../utils/CurrentUser";
 
+import "../css/HomePage.css"
+
 export default function HomePage() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [userUID, setUserUID] = useState(null);
 
   const handleClickChat = () => {
     navigate("/chatApp");
@@ -31,7 +32,6 @@ export default function HomePage() {
     const getUserUID = async () => {
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          setUserUID(user.uid);
           setCurrentUser(user.uid);
         }
       });

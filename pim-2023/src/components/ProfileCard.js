@@ -20,7 +20,7 @@ import Star from "../assets/star.svg";
 export default function ProfileCard(props) {
   const [displayLang, setDisplayLang] = useState("");
   const [displayFlag, setDisplayFlag] = useState("");
-  const [destUserUID, setDestUserUID] = useState(null);
+  // const [destUserUID, setDestUserUID] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,11 +39,11 @@ export default function ProfileCard(props) {
     if (props.nativeLang === "deLang") setDisplayFlag(flagGermany);
     if (props.nativeLang === "ptLang") setDisplayFlag(flagPortugal);
     if (props.nativeLang === "ruLang") setDisplayFlag(flagRussia);
-  }, []);
+  }, [props.nativeLang]);
 
   const handleSpeakButton = (userUID, userPseudo) => {
     setDestinationUser(userUID);
-    setDestUserUID(userUID);
+    // setDestUserUID(userUID);
     setDestPseudo(userPseudo);
     navigate("/chatApp");
   };
@@ -66,7 +66,7 @@ export default function ProfileCard(props) {
           <p>{displayLang}</p>
         </div>
         <div className="cardFooter">
-          <p><img src={Star} />5.00 <span id="nbReviews">(18)</span></p>
+          <p><img src={Star} alt="starIcon" />5.00 <span id="nbReviews">(18)</span></p>
           <button onClick={() => handleSpeakButton(props.userUID, props.pseudo)} id="speakButton">Parler</button>
         </div>
       </div>

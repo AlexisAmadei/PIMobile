@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import CategoryCard from "../components/categoryCard";
 import gamingIcon from "../assets/gamingIcon.svg";
@@ -13,15 +13,16 @@ import "../css/CenterSelect.css";
 export default function CenterSelect({ handleCenterSelect }) {
   const [center, setCenter] = useState(null);
 
+  const handleSubmit = useCallback(() => {
+    handleCenterSelect(center);
+  }, [center, handleCenterSelect]);
+
   useEffect(() => {
     if (center !== null) {
       handleSubmit();
     }
-  }, [center]);
+  }, [center, handleSubmit]);
 
-  const handleSubmit = () => {
-    handleCenterSelect(center);
-  };
 
   const handleCategorySelect = (category) => {
     setCenter(category);

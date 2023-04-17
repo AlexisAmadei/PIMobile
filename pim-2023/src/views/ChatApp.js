@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { db } from '../config/firebaseConfig';
 import { collection, addDoc, query, onSnapshot, orderBy, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
@@ -33,7 +33,7 @@ const ChatApp = () => {
     return () => {
       unsubscribe();
     };
-  }, [currentUser, destinationUser, db]);
+  }, [currentUser, destinationUser]);
   const sendMessage = async (e) => {
     e.preventDefault();
     try {
@@ -48,13 +48,13 @@ const ChatApp = () => {
     }
     setInput('');
   };
-  const handleBackButton = () => {
+  const handleBackButton = useCallback(() => {
     navigate(-1);
-  };
+  }, [navigate]);
   return (
     <div className="chatApp">
       <div className='chatAppHeader'>
-        <img id="headerChevron" src={leftChevron} onClick={handleBackButton} />
+        <img id="headerChevron" src={leftChevron} onClick={handleBackButton} alt='going back' />
         <p id='pseudo'>{destPseudo}</p>
       </div>
       <div className="chatApp__messages">
