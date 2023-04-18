@@ -148,9 +148,9 @@ export default function RegisterPage() {
           <input className="acceptButton" type="submit" value="Accepter et continuer" />
           {error && <div style={{ color: "red" }}>{error}</div>}
         </form>
-        <button className="registerWithGoogle" onClick={handleGoogleLogin}>
+        {/* <button className="registerWithGoogle" onClick={handleGoogleLogin}>
           <img src={googleLogo} alt="Google logo" />Continuer avec Google
-        </button>
+        </button> */}
         <p className="returnToLogin">
           Déjà un compte ?
           <Link id="linkRouter" to="/security/login"> Se Connecter</Link>
