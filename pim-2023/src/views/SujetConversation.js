@@ -20,8 +20,6 @@ export default function SujetConversation() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="sujet de conversation"
-              // value={age}
-              // onChange={handleChange}
             >
               <MenuItem value="sport">sport</MenuItem>
             </Select>
